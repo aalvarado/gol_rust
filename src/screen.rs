@@ -1,23 +1,27 @@
 extern crate pancurses;
 
+use self::pancurses::{initscr, endwin};
+
 pub struct Screen {
     window: pancurses::Window
 }
 
 impl Screen {
     pub fn new() -> Screen {
-        Screen { window: pancurses::initscr() }
+        Screen { window: initscr() }
     }
 
     pub fn talk(&self) {
-        self.window.printw("Hello!");
-        self.window.refresh();
-        self.window.getch();
+        let ref window = self.window;
+
+        window.printw("Hello!");
+        window.refresh();
+        window.getch();
     }
 }
 
 impl Drop for Screen {
     fn drop(&mut self) {
-        pancurses::endwin();
+        endwin();
     }
 }
