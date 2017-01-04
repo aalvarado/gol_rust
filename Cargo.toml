@@ -1,0 +1,7 @@
+[package]
+name = "gol_rust"
+version = "0.1.0"
+authors = ["Adan Alvarado <adan.alvarado7@gmail.com>"]
+
+[dependencies]
+pancurses = "0.7"
