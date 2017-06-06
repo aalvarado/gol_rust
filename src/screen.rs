@@ -1,22 +1,29 @@
 extern crate pancurses;
 
 use self::pancurses::{initscr, endwin};
+use ::Config;
 
 pub struct Screen {
-    window: pancurses::Window
+    window: pancurses::Window,
+    config: ::Config
 }
 
 impl Screen {
     pub fn new() -> Screen {
-        Screen { window: initscr() }
+        let temp_self = Screen { window: initscr(), config: Config::new() };
+        temp_self.init();
+        temp_self.talk("test");
+        temp_self
     }
 
-    pub fn talk(&self) {
-        let ref window = self.window;
+    pub fn init(&self) {
+        //let ref window = self.window;
+        self.window.refresh();
+    }
 
-        window.printw("Hello!");
-        window.refresh();
-        window.getch();
+    pub fn talk(&self, str1: &str) {
+        self.window.printw(str1);
+        self.window.getch();
     }
 }
 

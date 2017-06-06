@@ -1,8 +1,12 @@
 mod screen;
+mod config;
+
+#[macro_use]
+extern crate serde_derive;
+
 use screen::Screen;
+use config::Config;
 
 fn main() {
-    let screen = Screen::new();
-    screen.talk();
-    //println!("address of screen: {:p}", &screen);
+    Screen::new();
 }
