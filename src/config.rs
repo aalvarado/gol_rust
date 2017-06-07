@@ -1,14 +1,18 @@
 extern crate toml;
 extern crate serde;
 
+use std::path::Path;
+
+
 #[derive(Deserialize)]
 pub struct Config {
-    width: u8,
-    height: u8
+    pub width: u8,
+    pub height: u8
+
 }
 
 impl Config {
     pub fn new() -> Config {
-        Config { width: 0, height: 0 }
+        Config { width: 0, height: 0}
     }
 }

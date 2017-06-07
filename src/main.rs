@@ -1,3 +1,5 @@
+#![allow(dead_code)]
+
 mod screen;
 mod config;
 
@@ -8,5 +10,6 @@ use screen::Screen;
 use config::Config;
 
 fn main() {
-    Screen::new();
+    let c = Config::new();
+    Screen::new(c);
 }

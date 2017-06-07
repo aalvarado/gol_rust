@@ -9,8 +9,8 @@ pub struct Screen {
 }
 
 impl Screen {
-    pub fn new() -> Screen {
-        let temp_self = Screen { window: initscr(), config: Config::new() };
+    pub fn new(config: Config) -> Screen {
+        let temp_self = Screen { window: initscr(), config: config };
         temp_self.init();
         temp_self.talk("test");
         temp_self
