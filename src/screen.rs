@@ -5,7 +5,7 @@ use ::Config;
 
 pub struct Screen {
     window: pancurses::Window,
-    config: ::Config
+    //config: ::Config
 }
 
 impl Screen {
