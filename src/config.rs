@@ -1,12 +1,10 @@
 extern crate toml;
 extern crate serde;
 
-use std::path::Path;
 use std::fs::File;
 use std::io::prelude::*;
 
-
-const PATH: &'static str = "conf/config.tml";
+const PATH: &'static str = "conf/config.toml";
 
 #[derive(Deserialize)]
 pub struct Config {

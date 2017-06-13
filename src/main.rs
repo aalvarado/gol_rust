@@ -11,6 +11,7 @@ use config::Config;
 
 fn main() {
     let c = Config::new();
-    c.read_file();
-    Screen::new(c);
+    let x = c.read_file();
+    println!("{}", x);
+    //Screen::new(c);
 }
