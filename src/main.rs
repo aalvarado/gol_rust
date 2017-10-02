@@ -1,18 +1,18 @@
 #![allow(dead_code)]
 
-//mod screen;
+mod screen;
 mod config;
+mod grid;
+mod cell;
 
 #[macro_use]
 extern crate serde_derive;
 
-//use screen::Screen;
+use screen::Screen;
 use config::Config;
+use grid::Grid;
 
 fn main() {
-    let c = Config::new();
-    //let x = c.read_file();
-    println!("{}", c.width);
-    println!("{}", c.height);
-    //Screen::new(c);
+    let config = Config::new();
+    Screen::new(&config);
 }

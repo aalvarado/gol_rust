@@ -7,8 +7,8 @@ const PATH: &'static str = "conf/config.toml";
 
 #[derive(Deserialize)]
 pub struct Config {
-    pub width: u8,
-    pub height: u8
+    pub width: usize,
+    pub height: usize
 }
 
 impl Config {

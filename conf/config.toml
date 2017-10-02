@@ -1,2 +1,4 @@
 width = 100
 height = 100
+live_cell = "0"
+dead_cell = "░"
