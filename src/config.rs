@@ -7,8 +7,8 @@ const PATH: &'static str = "conf/config.toml";
 
 #[derive(Deserialize)]
 pub struct Config {
-    pub width: u8,
-    pub height: u8
+    pub width: i32,
+    pub height: i32
 }
 
 impl Config {
@@ -18,14 +18,8 @@ impl Config {
 
     pub fn read_file() -> String {
         let mut contents = String::new();
-        let mut file = match File::open(PATH) {
-            Ok(file) => file,
-            Err(_) => {
-                panic!("Could not find config file");
-            }
-        };
-
-        file.read_to_string(&mut contents).unwrap_or_else(|_| panic!("Error reading config") );
+        let mut file = File::open(PATH).expect("Unable to open file");
+        file.read_to_string(&mut contents).expect("Error reading config");
         contents
     }
 }

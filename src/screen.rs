@@ -1,34 +1,67 @@
 extern crate pancurses;
 
-use self::pancurses::{initscr, endwin};
+use self::pancurses::*;
 use ::Config;
 
-pub struct Screen {
+pub struct Screen<'a> {
     window: pancurses::Window,
-    //config: ::Config
+    config: &'a::Config
 }
 
-impl Screen {
-    pub fn new(config: Config) -> Screen {
-        //let temp_self = Screen { window: initscr(), config: config };
-        let temp_self = Screen { window: initscr() };
-        temp_self.init();
-        temp_self.talk("test");
+impl<'a> Screen<'a> {
+    pub fn new(config: &Config) -> Screen {
+        initscr();
+        let window = newwin(0, 0, 0, 0);
+        let temp_self = Screen { window: window, config: config };
         temp_self
     }
 
-    pub fn init(&self) {
-        //let ref window = self.window;
-        self.window.refresh();
+    pub fn run(&self) {
+        let window = &self.window;
+        window.draw_box(0, 0);
+        window.getch();
+        window.refresh();
+    }
+
+    pub fn start(&self) -> () {
+        ()
+    }
+
+    pub fn end(&self) -> () {
+        ()
+    }
+
+    //pub fn init(&self) {
+        ////let ref window = self.window;
+        //const window = self.window;
+        ////const config = self.config;
+        //window.box(100, 100);
+        //window.refresh();
+    //}
+
+    pub fn config(&self) -> &Config {
+        &self.config
+    }
+
+    pub fn height(&self) -> i32 {
+        self.config().height
+    }
+
+    pub fn width(&self) -> i32 {
+        self.config().width
     }
 
     pub fn talk(&self, str1: &str) {
         self.window.printw(str1);
         self.window.getch();
     }
+
+    fn window(&self) -> &pancurses::Window {
+        &self.window
+    }
 }
 
-impl Drop for Screen {
+impl<'a> Drop for Screen<'a> {
     fn drop(&mut self) {
         endwin();
     }
