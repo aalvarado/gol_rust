@@ -1,5 +1,16 @@
 use cell::Cell;
 
+const COORDINATES: [(isize, isize)] = [
+    (-1, -1),
+    (-1, 0),
+    (-1, 1),
+    (0, -1),
+    (0, 1),
+    (1, -1),
+    (1, 0),
+    (1, 1)
+]
+
 pub struct Grid {
     cells: Vec<Vec<Cell>>
 }
@@ -10,14 +21,5 @@ impl Grid {
     }
 
     pub fn coords(x: usize, y: usize) -> Vec<(usize, usize)> {
-        vec![
-        (x - 1, y - 1),
-        ( x - 1, y),
-        (x - 1, y + 1),
-        (x, y - 1),
-        (x, y + 1),
-        (x + 1, y - 1),
-        (x + 1, y),
-        (x + 1, y + 1)]
-    }
+
 }
