@@ -1,6 +1,6 @@
 #[derive(Clone)]
 pub struct Cell {
-    status: u8
+    pub status: usize
 }
 
 impl Cell {
