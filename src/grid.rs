@@ -40,12 +40,28 @@ impl Grid {
                 let new_x = new_coords.0 as usize;
                 let new_y = new_coords.1 as usize;
                 let cell = &self.cells[new_x][new_y];
-                //println!("{}", cell.status);
-                //sum += cell.status
                 sum + cell.status
             } else {
                 0
             }
         })
+    }
+
+    pub fn coord_check(&self, x: usize, y: usize) -> Result<(usize, usize), ()> {
+        let height = self.height as usize;
+        let width = self.width as usize;
+
+        let x_in_bounds =  x <= height;
+        let y_in_bounds =  y <= width;
+
+        if x_in_bounds && y_in_bounds {
+            Ok((x, y))
+        } else {
+            Err(())
+        }
+    }
+
+    pub fn kill_cell(&mut self, x: usize, y: usize) -> usize {
+        self.cells[x][y].die()
     }
 }
