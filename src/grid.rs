@@ -72,9 +72,16 @@ impl Grid {
     pub fn scan_cells(&mut self) -> () {
         let mut row_index = 0usize;
         let mut cell_index = 0usize;
-        for row in self.cells.iter_mut() {
-            for cell in row.iter_mut() {
-                //match neighborg_count(row_index, cell_index)
+        let mut dead_generation: Vec<(usize, usize)> = Vec::new();
+        let mut live_generation: Vec<(usize, usize)> = Vec::new();
+
+        for row in self.cells.iter() {
+            for cell in row.iter() {
+                match self.neighborg_count(row_index, cell_index) {
+                    3 => live_generation.push((row_index, cell_index)),
+                    0 ... 1 | 4 ... 8 => dead_generation.push((row_index, cell_index)),
+                    _ => ()
+                }
                 cell_index += 1;
             }
             cell_index = 0;
