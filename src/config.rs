@@ -8,7 +8,7 @@ const PATH: &'static str = "conf/config.toml";
 #[derive(Deserialize)]
 pub struct Config {
     pub width: usize,
-    pub height: usize
+    pub height: usize,
 }
 
 impl Config {
@@ -25,7 +25,8 @@ impl Config {
             }
         };
 
-        file.read_to_string(&mut contents).unwrap_or_else(|_| panic!("Error reading config") );
+        file.read_to_string(&mut contents)
+            .unwrap_or_else(|_| panic!("Error reading config"));
         contents
     }
 }

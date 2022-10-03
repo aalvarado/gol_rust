@@ -1,13 +1,13 @@
-extern crate pancurses;
+// extern crate pancurses;
 
-use self::pancurses::{initscr, endwin};
-use ::Config;
+use self::pancurses::{endwin, initscr};
+// use ::Config;
 use ::Grid;
 
 pub struct Screen<'a> {
     window: pancurses::Window,
     config: &'a Config,
-    grid: ::Grid
+    grid: ::Grid,
 }
 
 impl<'a> Screen<'a> {
@@ -15,7 +15,7 @@ impl<'a> Screen<'a> {
         let temp_self = Screen {
             window: initscr(),
             config: config,
-            grid: Grid::new(config.height, config.width)
+            grid: Grid::new(config.height, config.width),
         };
 
         temp_self.init();
@@ -32,7 +32,7 @@ impl<'a> Screen<'a> {
     }
 }
 
-impl <'a> Drop for Screen<'a> {
+impl<'a> Drop for Screen<'a> {
     fn drop(&mut self) {
         endwin();
     }

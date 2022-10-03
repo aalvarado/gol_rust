@@ -1,18 +1,30 @@
 #![allow(dead_code)]
 
-mod screen;
-mod config;
-mod grid;
-mod cell;
-
 #[macro_use]
-extern crate serde_derive;
+extern crate lazy_static;
+extern crate config;
 
-use screen::Screen;
+// mod config;
+mod gol_cell;
+mod grid;
+mod screen;
+
+// #[macro_use]
+// extern crate serde_derive;
+
 use config::Config;
-use grid::Grid;
+// use screen::Screen;
+// use grid::Grid;
+// use screen::Screen;
+
+// use config::Config;
+// use std::error::Error;
+use std::sync::RwLock;
+
+lazy_static! {
+    static ref SETTINGS: RwLock<Config> = RwLock::new(Config::default());
+}
 
 fn main() {
-    let config = Config::new();
-    Screen::new(&config);
+    // Screen::new();
 }
